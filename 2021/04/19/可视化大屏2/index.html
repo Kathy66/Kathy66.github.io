@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="产品," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Lu2yuan's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="从3月份确认开始做大屏系统，到现在差不多已经1个月的时间了。最初的目标是说4月第一周完成初始demo，供销售推广产品使用。所以该产品没有立项，没有明确的需求，基本上通过几次会议沟通就同步开始了需求细化与开发的工作。最开始的设计是根据对业务的现有了解，设计出几张不同主题的图表，这中间就省略了对不同图表进行多条件进行筛选的功能，定位为对关键信息的展示。在完成了总览、收入分析、医保分析、库存分析以及优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可视化大屏2">
+<meta property="og:url" content="https://yuan2lu.cn/2021/04/19/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F2/index.html">
+<meta property="og:site_name" content="Lu2yuan&#39;s blog">
+<meta property="og:description" content="从3月份确认开始做大屏系统，到现在差不多已经1个月的时间了。最初的目标是说4月第一周完成初始demo，供销售推广产品使用。所以该产品没有立项，没有明确的需求，基本上通过几次会议沟通就同步开始了需求细化与开发的工作。最开始的设计是根据对业务的现有了解，设计出几张不同主题的图表，这中间就省略了对不同图表进行多条件进行筛选的功能，定位为对关键信息的展示。在完成了总览、收入分析、医保分析、库存分析以及优化">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-04-19T12:03:52.000Z">
+<meta property="article:modified_time" content="2021-05-23T06:59:06.864Z">
+<meta property="article:author" content="Kathy Lu">
+<meta property="article:tag" content="产品">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://yuan2lu.cn/2021/04/19/可视化大屏2/"/>
+
+
+
+
+
+  <title>可视化大屏2 | Lu2yuan's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lu2yuan's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">永远热情 永远快乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yuan2lu.cn/2021/04/19/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%A7%E5%B1%8F2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lu2yuan's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">可视化大屏2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-19T20:03:52+08:00">
+                2021-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E4%BD%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>从3月份确认开始做大屏系统，到现在差不多已经1个月的时间了。最初的目标是说4月第一周完成初始demo，供销售推广产品使用。所以该产品没有立项，没有明确的需求，基本上通过几次会议沟通就同步开始了需求细化与开发的工作。最开始的设计是根据对业务的现有了解，设计出几张不同主题的图表，这中间就省略了对不同图表进行多条件进行筛选的功能，定位为对关键信息的展示。在完成了总览、收入分析、医保分析、库存分析以及优化分析几大模块后以及对应的图表设计后，领导提出了新的想法<br>由于目前我们没有实际的客户，现有设计的认可度究竟能有多高，完全是个未知数。其次，对于这种关键信息的图表展示，每家医院的关注重点很可能都是不一样的，而现在我们想用一套固定的内容去做推广，很可能会碰到大部分内容都不适用的情况。最后，也是非常关键的一点，虽然目前产品的定位只是demo,图表展示的数据初期可以先自行mock，但产品是希望在后期接到具体项目后能够快速投入使用的，前期的工作不能白费。鉴于这个目的，那产品的设计思路就要做出调整了。与领导明确了新的时间安排以及多次沟通后，更新设计思路如下：<br>1.考虑到不同项目的数据可及性，将数据进行归类，尽量避免由于数据获取问题导致现有图表均无法展示。在保证信息的价值性外，尽可能保证单个图表的数据来源单一<br>2.基于第一点的考虑，设计出一套图表库，在后期可以比较方便的对该图表库进行扩充。应用到具体某个项目时，可以根据实际情况对页面展示的图表进行动态配置<br>3.针对医院耗材关联的不同角色，分别设计出不同的图表，根据登录时的不同角色展示不同的页面<br>4.基于栅格系统对图表的高和宽进行设计，设计页面布局时，可以将图表与布局进行适配<br>5.图表制作。最初基于页面进行设计时，考虑到显示效果，在PPT中根据固定位置排放图表以及对单个表进行数据模拟生成对应图表(对于常见的大部分图表类型，PPT中基本都涵盖了。像可视化系统经常用的水滴图、仪表盘等，可以在Echarts或者AntG2Pro上找到相应的图形，根据实际需求修改数据即可)。在对数据进行梳理和归类后，整理出了69张图表，PPT的形式便不太适合作为图表展示的载体。与前端开发沟通后，结合业务需要，列出每个图表的关键信息，包括但不限于图表名称、描述、类型、高、宽、分组、标签、角色、数据来源和图表示例（方便在页面上展示图表库时，可以直接对excel中的内容做简单处理后转为json文件，直接使用）<br>6.数据的真实性和逻辑性。医院是什么类型？大三甲、综合还是专科？这个问题直接决定了医院每年的耗材预算大概是多少，耗材使用排名靠前的科室是哪些以及高频使用的耗材又会是哪些。以及高值耗材的大概占比又是多少等等。这些信息并不能轻而易举的在网上获取到，尤其是图表的数据包含了日、月、年。这也是花费时间最多的一部分<br>数据查找、图表的细节、格式调整以及前后反复的检查和修改，不能说这是个愉快的过程，尤其是在时间有限的情况下。从花费精力上来说，这个过程确实很折磨人，但从收获上来说，不管是业务的了解和熟悉还是在这中间对问题的思考以及解决，都有让我觉得开心和满足的瞬间。了解的越多，就会发现不知道的越多，我不知道，现在这些业务的积累，究竟‘有没有用’，距离我对智慧医院的想象，还有多远。可工作，单纯为了钱会觉得很辛苦吧，有些时候，意义，可以给自己带来不一样的力量</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E4%BA%A7%E5%93%81/" rel="tag"># 产品</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/11/%E5%8F%AA%E6%9C%89%E7%97%9B%E8%8B%A6%E6%89%8D%E8%83%BD%E6%88%90%E9%95%BF%EF%BC%9F%EF%BC%81/" rel="next" title="只有痛苦才能成长？！">
+                <i class="fa fa-chevron-left"></i> 只有痛苦才能成长？！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/19/%E4%BA%A7%E5%93%81%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%9B%B0%E5%A2%83/" rel="prev" title="产品中遇到的困境">
+                产品中遇到的困境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"><span class="post-count">博客共37.2k字</span>&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kathy Lu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
